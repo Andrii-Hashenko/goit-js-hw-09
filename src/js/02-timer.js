@@ -1,15 +1,16 @@
-import flatpickr from 'flatpickr';
-import 'flatpickr/dist/flatpickr.min.css';
+import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
 
 // all modules
 import Notiflix from 'notiflix';
 
-// // one by one
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import { Report } from 'notiflix/build/notiflix-report-aio';
-// import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
-// import { Loading } from 'notiflix/build/notiflix-loading-aio';
-// import { Block } from 'notiflix/build/notiflix-block-aio';
+// one by one
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { Block } from 'notiflix/build/notiflix-block-aio';
+
 
 const refs = {
   buttonStartEl: document.querySelector('button'),
@@ -30,6 +31,7 @@ refs.buttonStartEl.addEventListener('click', onButtonStartClick);
 refs.buttonStartEl.setAttribute('disabled', true);
 
 function onInputClick(e) {
+  
   console.log('выбираю дату');
 }
 
@@ -49,8 +51,11 @@ flatpickr('#datetime-picker', {
     const diferentInTime = selectedDate.getTime() - dateNow.getTime();
     console.log(diferentInTime);
     if (diferentInTime <= 0) {
+      
       Notiflix.Notify.warning('Please choose a date in the future');
+      
     } else {
+      
       refs.input.style.backgroundColor = 'aqua';
       refs.buttonStartEl.removeAttribute('disabled');
       refs.buttonStartEl.style.backgroundColor = 'lime';
@@ -61,30 +66,35 @@ flatpickr('#datetime-picker', {
 function onButtonStartClick(e) {
   console.log('посчитаем время');
   let diferentTime;
-
+  
   const timerID = setInterval(() => {
+    
     const dateNow = new Date();
     console.log(dateNow);
-
+    
     console.log(dateNow.getTime());
-
+    
     console.log(selectedDate.getTime());
-
+    
     diferentTime = selectedDate.getTime() - dateNow.getTime();
     if (diferentTime > 0) {
       console.log(diferentTime);
       console.log(convertMs(diferentTime));
-
+      
       updateClockFace(convertMs(diferentTime));
+      
     } else clearInterval(timerID);
+    
   }, 1000);
 }
 
 function updateClockFace({ days, hours, minutes, seconds }) {
+  
   console.log((refs.daysFieldEl.textContent = ` ${days} : `));
   console.log((refs.hoursFieldEl.textContent = ` ${hours} : `));
   console.log((refs.minutesFieldEl.textContent = ` ${minutes} : `));
   console.log((refs.secondsFieldEl.textContent = ` ${seconds} : `));
+  
 }
 
 function convertMs(ms) {
@@ -107,3 +117,4 @@ function convertMs(ms) {
 function pad(value) {
   return String(value).padStart(2, '0');
 }
+
