@@ -16,7 +16,7 @@ function onStartBtnClick() {
 
   refs.stopBtn.removeAttribute('disabled');
 
-  timerID = setInterval(() => {
+  timerId = setInterval(() => {
     refs.bodyElem.style.backgroundColor = `#${Math.floor(
       Math.random() * 16777215
     ).toString(16)}`;
@@ -25,7 +25,7 @@ function onStartBtnClick() {
 }
 
 function onStopBtnClick() {
-  clearInterval(timerID);
+  clearInterval(timerId);
 
   refs.stopBtn.setAttribute('disabled', true);
   refs.startBtn.removeAttribute('disabled');
