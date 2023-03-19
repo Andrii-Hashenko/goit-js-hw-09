@@ -4,6 +4,8 @@ const refs = {
   bodyElem: document.querySelector('body'),
 };
 
+let timerId = null;
+
 refs.startBtn.addEventListener('click', onStartBtnClick);
 refs.stopBtn.addEventListener('click', onStopBtnClick);
 
@@ -15,6 +17,8 @@ function onStartBtnClick() {
   refs.startBtn.setAttribute('disabled', true);
 
   refs.stopBtn.removeAttribute('disabled');
+
+
 
   timerId = setInterval(() => {
     refs.bodyElem.style.backgroundColor = `#${Math.floor(
