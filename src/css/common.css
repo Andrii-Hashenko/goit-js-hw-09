@@ -16,3 +16,10 @@ img {
   display: block;
   max-width: 100%;
 }
+.label{
+  padding-right: 5px;
+}
+
+.label::after {
+  content: ";";
+}
